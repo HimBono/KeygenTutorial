@@ -20,17 +20,12 @@ import random #imports random library, used for random number generation (we're 
 # either 192, 256 or 384. Then you add zeros to it if it is less than the required three digits,
 # using numerical to string conversion f"{numerical value/variable}"", and store the result to a variable.
 
-a = False #sets variable "a" to boolean value false as default
-while a == False: #begin loop that continues as long as "a" is false
-    x = random.randint(0,999) #generate a random integer between 0 and 999
-    if x == 256: #exlcude 256 and pass back to re-randomize and check again
-        pass
-    elif x == 384: #exlcude 384 and pass back to re-randomize and check again
-        pass
-    elif x == 192: #exlcude 192 and pass back to re-randomize and check again
-        pass
-    else:
-        a = True # If random integer is is not one of the three excluded, set "a" true to save it as "x"
+excluded_values = {256, 384, 192}  # Set of excluded values
+
+x = random.randint(0, 999) # Generate a random three-digit number
+
+while x in excluded_values: 
+    x = random.randint(0, 999) # Keep generating a new number until it meets the criteria
 
 # Now that our integer is saved, let's measure the digit count so we can
 # see if it needs any prefixed zeros to make it a three digit number for our key
